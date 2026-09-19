@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang=\"en\" data-theme=\"dark\">
+<head>
+  <meta charset=\"UTF-8\" />
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
+  <title>Skanda Rajesh — Photography</title>
+  <meta name=\"description\" content=\"Experimental photography portfolio by Skanda Rajesh. Architecture, motorsport, astro, fashion.\" />
+  <style>
+    :root {
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+      --text-3xl:  clamp(2.5rem,   1rem    + 4vw,    5rem);
+      --text-hero: clamp(3rem,     0.5rem  + 7vw,    8rem);
+
+      --space-1:  0.25rem;
+      --space-2:  0.5rem;
+      --space-3:  0.75rem;
+      --space-4:  1rem;
+      --space-5:  1.25rem;
+      --space-6:  1.5rem;
+      --space-8:  2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+      --space-32: 8rem;
+
+      --color-bg:             #171614;
+      --color-surface:        #1c1b19;
+      --color-surface-2:      #201f1d;
+      --color-surface-offset: #1d1c1a;
+      --color-surface-offset-2: #22211f;
+      --color-divider:        #262523;
+      --color-border:         #393836;
+
+      --color-text:           #cdccca;
+      --color-text-muted:     #797876;
+      --color-text-faint:     #5a5957;
+      --color-text-inverse:   #2b2a28;
+
+      --color-primary:        #4f98a3;
+      --color-primary-hover:  #227f8b;
+      --color-primary-active: #1a626b;
+      --color-primary-highlight: #313b3b;
+
+      --color-success:        #6daa45;
+      --color-error:          #d163a7;
+
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
+      --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
+      --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
+
+      --content-narrow: 640px;
+      --content-default: 960px;
+      --content-wide: 1200px;
+      --content-full: 100%;
+
+      --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+      --font-body: system-ui, -apple-system, BlinkMacSystemFont, \"SF Pro Text\", \"Segoe UI\", sans-serif;
+      --font-display: system-ui, -apple-system, BlinkMacSystemFont, \"SF Pro Display\", \"Segoe UI\", sans-serif;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme]) {
+        --color-bg:             #f7f6f2;
+        --color-surface:        #f9f8f5;
+        --color-surface-2:      #fbfbf9;
+        --color-surface-offset: #f3f0ec;
+        --color-surface-offset-2: #edeae5;
+        --color-divider:        #dcd9d5;
+        --color-border:         #d4d1ca;
+        --color-text:           #28251d;
+        --color-text-muted:     #7a7974;
+        --color-text-faint:     #bab9b4;
+        --color-text-inverse:   #f9f8f4;
+        --color-primary:        #01696f;
+        --color-primary-hover:  #0c4e54;
+        --color-primary-active: #0f3638;
+        --color-primary-highlight: #cedcd8;
+        --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+        --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08);
+        --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { -webkit-text-size-adjust: none; text-size-adjust: none; scroll-behavior: smooth; scroll-padding-top: var(--space-16); }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.6;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      background: radial-gradient(circle at 10% 0%, #26231d 0%, #171614 45%, #050505 100%);
+      background-attachment: fixed;
+    }
+
+    img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; text-wrap: balance; }
+    p { text-wrap: pretty; max-width: 72ch; }
+
+    ::selection { background: oklch(from var(--color-primary) l c h / 0.25); color: var(--color-text); }
+    :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+
+    a, button, [role=button], [role=link], input, textarea, select {
+      transition: color var(--transition-interactive),
+                  background var(--transition-interactive),
+                  border-color var(--transition-interactive),
+                  box-shadow var(--transition-interactive),
+                  transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    button { cursor: pointer; background: none; border: none; }
+
+    .page-shell { min-height: 100vh; display: flex; flex-direction: column; }
+
+    .header {
+      position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 40;
+      backdrop-filter: blur(16px);
+      background: color-mix(in oklch, var(--color-bg) 60%, #000000 40%);
+      border-bottom: 1px solid oklch(from var(--color-border) l c h / 0.6);
+    }
+
+    .header-inner {
+      max-width: var(--content-wide);
+      margin-inline: auto;
+      padding: var(--space-3) var(--space-4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-full);
+      border: 1px solid oklch(from var(--color-border) l c h / 0.6);
+      box-shadow: 0 0 0 1px oklch(from var(--color-surface-offset) l c h / 0.6);
+      background: radial-gradient(circle at 0% 0%, #31302b 0%, #201f1d 40%, #171614 100%);
+    }
+
+    .logo-mark svg { width: 28px; height: 28px; }
+
+    .logo-text { display: flex; flex-direction: column; gap: 0; }
+    .logo-title { font-size: var(--text-sm); letter-spacing: 0.12em; text-transform: uppercase; }
+    .logo-subtitle { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+    .nav { display: flex; align-items: center; gap: var(--space-4); }
+
+    .nav-list { list-style: none; display: flex; align-items: center; gap: var(--space-3); font-size: var(--text-sm); }
+
+    .nav-link {
+      position: relative;
+      padding-block: var(--space-1);
+      color: var(--color-text-muted);
+    }
+
+    .nav-link::after {
+      content: \"\";
+      position: absolute;
+      inset-inline: 0;
+      inset-block-end: 0;
+      height: 2px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(90deg, var(--color-primary), var(--color-success));
+      transform-origin: center;
+      transform: scaleX(0);
+      opacity: 0;
+    }
+
+    .nav-link:hover { color: var(--color-text); }
+    .nav-link.active { color: var(--color-text); }
+    .nav-link.active::after { transform: scaleX(1); opacity: 1; }
+
+    .theme-toggle {
+      width: 32px; height: 32px; border-radius: var(--radius-full);
+      border: 1px solid oklch(from var(--color-border) l c h / 0.9);
+      display: inline-flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle at 30% 0%, #2b2a26 0%, #171614 55%, #050505 100%);
+      color: var(--color-text);
+    }
+
+    .theme-toggle:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+
+    .main { flex: 1; padding-top: 72px; }
+    .section { padding-block: clamp(var(--space-12), 10vw, var(--space-24)); padding-inline: var(--space-4); }
+    .section-inner { max-width: var(--content-wide); margin-inline: auto; }
+
+    .hero { min-height: 80vh; display: grid; place-items: center; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--space-12); align-items: center; }
+    @media (max-width: 768px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } }
+
+    .hero-title {
+      font-size: var(--text-hero);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: linear-gradient(120deg, #f5f5f0, #4f98a3, #6daa45);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-meta { margin-top: var(--space-4); display: flex; flex-wrap: wrap; gap: var(--space-3); color: var(--color-text-muted); font-size: var(--text-sm); }
+    .hero-tag { padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); border: 1px solid oklch(from var(--color-border) l c h / 0.6); background: oklch(from var(--color-surface-offset) l c h / 0.7); }
+
+    .hero-actions { margin-top: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+    .btn {
+      padding: var(--space-2) var(--space-5);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      border: 1px solid oklch(from var(--color-border) l c h / 0.9);
+      background: var(--color-surface-offset);
+      color: var(--color-text);
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at 0% 0%, #4f98a3 0%, #01696f 45%, #0c4e54 100%);
+      border-color: oklch(from var(--color-primary) l c h / 0.9);
+      color: var(--color-text-inverse);
+      box-shadow: 0 8px 24px oklch(from var(--color-primary) l c h / 0.55);
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px oklch(from var(--color-primary) l c h / 0.7); }
+    .btn-secondary:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    .hero-orbit {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--radius-xl);
+      padding: var(--space-3);
+      background:
+        radial-gradient(circle at 0% 0%, #3c3b37 0%, transparent 45%),
+        radial-gradient(circle at 100% 100%, #4f98a3 0%, transparent 40%),
+        radial-gradient(circle at 50% 0%, #6daa45 0%, transparent 30%),
+        linear-gradient(145deg, #201f1d, #050505);
+      box-shadow: 0 18px 60px oklch(0 0 0 / 0.8);
+      overflow: hidden;
+    }
+
+    .hero-orbit-inner {
+      position: relative;
+      width: 100%; height: 100%;
+      border-radius: calc(var(--radius-xl) - var(--space-3));
+      border: 1px solid oklch(from var(--color-border) l c h / 0.7);
+      backdrop-filter: blur(12px);
+      background: linear-gradient(135deg, oklch(from var(--color-surface-2) l c h / 0.9), oklch(from var(--color-surface-offset-2) l c h / 0.9));
+    }
+
+    .hero-frame {
+      position: absolute;
+      inset: var(--space-4);
+      border-radius: var(--radius-lg);
+      border: 1px dashed oklch(from var(--color-border) l c h / 0.8);
+      display: grid;
+      place-items: center;
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+      text-align: center;
+    }
+
+    .hero-frame span { max-width: 28ch; }
+
+    .hero-orbit-ring {
+      position: absolute;
+      inset: 8%;
+      border-radius: var(--radius-full);
+      border: 1px solid oklch(from var(--color-primary) l c h / 0.5);
+      mix-blend-mode: screen;
+      animation: orbit 22s linear infinite;
+    }
+
+    .hero-orbit-node { position: absolute; width: 10px; height: 10px; border-radius: var(--radius-full); background: #f5f5f0; box-shadow: 0 0 18px oklch(0.88 0.08 180 / 0.8); }
+    .hero-orbit-node:nth-child(1) { top: 8%; left: 50%; }
+    .hero-orbit-node:nth-child(2) { top: 65%; left: 86%; }
+    .hero-orbit-node:nth-child(3) { top: 84%; left: 18%; }
+    @keyframes orbit { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-6); }
+    .section-title { font-size: var(--text-xl); }
+    .section-subtitle { font-size: var(--text-sm); color: var(--color-text-muted); max-width: 40ch; }
+
+    .pill-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-4); }
+    .pill {
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      border: 1px solid oklch(from var(--color-border) l c h / 0.7);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-text-muted);
+      background: oklch(from var(--color-surface-offset) l c h / 0.7);
+    }
+    .pill[data-active=\"true\"] {
+      color: var(--color-text-inverse);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-success));
+      border-color: oklch(from var(--color-primary) l c h / 0.9);
+      box-shadow: 0 8px 24px oklch(from var(--color-primary) l c h / 0.6);
+    }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: var(--space-4); }
+
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--color-surface-2);
+      border: 1px solid oklch(from var(--color-border) l c h / 0.6);
+      transform-origin: center;
+    }
+
+    .photo-media { aspect-ratio: 4 / 5; background: radial-gradient(circle at 50% 0%, #3c3b37 0%, #171614 60%, #050505 100%); }
+    .photo-card img { width: 100%; height: 100%; object-fit: cover; }
+
+    .photo-meta { padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
+    .photo-title { font-size: var(--text-sm); letter-spacing: 0.08em; text-transform: uppercase; }
+    .photo-info-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); font-size: var(--text-xs); color: var(--color-text-muted); }
+    .photo-tag { padding: 0.15rem 0.5rem; border-radius: var(--radius-full); background: oklch(from var(--color-surface-offset-2) l c h / 0.7); border: 1px solid oklch(from var(--color-border) l c h / 0.6); }
+    .photo-year { font-variant-numeric: tabular-nums; }
+
+    .photo-card:hover { transform: translateY(-2px) scale(1.01); box-shadow: var(--shadow-md); }
+    .photo-card[data-hidden=\"true\"] { display: none; }
+
+    .series-row { display: flex; gap: var(--space-4); overflow-x: auto; padding-bottom: var(--space-2); scroll-snap-type: x mandatory; }
+    .series-card { min-width: min(360px, 80vw); scroll-snap-align: start; border-radius: var(--radius-lg); border: 1px solid oklch(from var(--color-border) l c h / 0.7); background: radial-gradient(circle at 0% 0%, #2b2a26 0%, #171614 60%, #050505 100%); overflow: hidden; }
+    .series-media { aspect-ratio: 16 / 9; background: radial-gradient(circle at 100% 0%, #4f98a3 0%, transparent 40%), radial-gradient(circle at 0% 100%, #6daa45 0%, transparent 35%), linear-gradient(135deg, #201f1d, #050505); }
+    .series-media img { width: 100%; height: 100%; object-fit: cover; }
+    .series-body { padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
+    .series-title { font-size: var(--text-sm); letter-spacing: 0.08em; text-transform: uppercase; }
+    .series-meta { display: flex; align-items: center; justify-content: space-between; font-size: var(--text-xs); color: var(--color-text-muted); }
+    .series-chip { padding: 0.15rem 0.5rem; border-radius: var(--radius-full); border: 1px solid oklch(from var(--color-border) l c h / 0.6); }
+
+    .about-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr); gap: var(--space-12); align-items: start; }
+    @media (max-width: 900px) { .about-grid { grid-template-columns: minmax(0, 1fr); } }
+
+    .about-body { display: flex; flex-direction: column; gap: var(--space-4); }
+    .about-highlight { padding: var(--space-4); border-radius: var(--radius-lg); border: 1px solid oklch(from var(--color-border) l c h / 0.7); background: radial-gradient(circle at 0% 0%, #3c3b37 0%, #171614 55%, #050505 100%); }
+    .about-highlight-title { font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: var(--space-2); }
+    .about-list { list-style: none; display: grid; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-text-muted); }
+
+    .contact-panel { max-width: var(--content-narrow); border-radius: var(--radius-lg); border: 1px solid oklch(from var(--color-border) l c h / 0.8); background: radial-gradient(circle at 50% 0%, #3c3b37 0%, #171614 60%, #050505 100%); padding: var(--space-6); box-shadow: var(--shadow-md); }
+    .contact-row { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-4); font-size: var(--text-sm); }
+    .contact-link { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-radius: var(--radius-full); border: 1px solid oklch(from var(--color-border) l c h / 0.7); background: oklch(from var(--color-surface-offset-2) l c h / 0.7); }
+    .contact-link:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+
+    .footer { padding: var(--space-6) var(--space-4); border-top: 1px solid oklch(from var(--color-divider) l c h / 0.8); background: color-mix(in oklch, var(--color-bg) 80%, #000000 20%); font-size: var(--text-xs); color: var(--color-text-muted); }
+    .footer-inner { max-width: var(--content-wide); margin-inline: auto; display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; justify-content: space-between; }
+    .footer-meta { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+    .reveal { opacity: 0; transform: translateY(24px) scale(0.97); filter: blur(8px); }
+    .reveal.in-view { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1), filter 600ms cubic-bezier(0.22, 1, 0.36, 1); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-orbit-ring { animation: none; }
+      .reveal { opacity: 1; transform: none; filter: none; }
+      a, button, [role=button], [role=link], input, textarea, select { transition: none; }
+    }
+  </style>
+<script type='text/javascript' src='https://ppl-ai-code-interpreter-files.s3.amazonaws.com/2vqJHe1QYewMN0cM_qLC0_wo74eXXB8aP7mEJsQ1s8ADK7fJXyt5MQJ9JsqaK3DeG9f2ET663fKn2KcfgKgj9fwvbyWTwYn4OIq_5GDRE6pGkOcypoiigRNe5KDWujWzpKtlesSADUGzM8llk_N3Dv-4A1lN7hfcljowlb8stfi8WmTNm-uugk4GwNjbjQ9-h_qGmRZVdaj6mYELlVM0PIvTL2sBcxzTxu5wTXmKYc441qVxl8XzPrZkFLQnUGFRw0cCS86QLrdtOQ-06eXx9ylWMbd9n3FO1vtDKP-7TousNMBqMeIPz9ohYkPaKTo9uvz2aHO1xVdDLteq9GgDsJesE1zNmMwCdmj5Ln5r1wVdNy8v5MfqFGX30GpPUzSXOSpOZBBhCiHJ47s4KMCpgoG9dNANWxYd0RRZYYQotPxhdblALkO6DvWuiGCIjHHokM5fdl-gT5h-B7oy29ydYwcQqUyYTawik41TnD47GuqUu-ji2WO5P5WHyYIch4zUi_5Kgf34VLFuPbPY459sUEAwh_MVDQQU6TjVKveMUmWYEGuTxfNOhqbeyXyDrHEzabZ_VDQ4zCjqg4HldWuoZ_CvvTGgvQ38V_Wif-Kk0fCGLdNdj8OMWtBfmIerOwjG7eiD0ZfQAKXY57eczqaKq-x4mmLHEE4rJuPy8uiYiiZyMxXZejTz7X9BamwBWWS55QAgB4j8QhmhVST7ORiLXOfk7ms5lhQmuoNOCG8JoaPZ1vfLO2aWG6iEESgszbDcSkygKUES3FuoZ0Gl_sVSC7mreFSas-XEncNn8RUS7cAW-4F8_6a2rhK_jrueq1ZyirFXjsQuV0OMSkaLBKpQWFMPeIC8YpOokmq0YfvQhHXc_VDYVOkyIPu1Rb-B41doXV7JXcqukh7T5NFJ6bU0gd_UN07BGGtDKAnqMfSY_vYPg_e5H29b7H7VB01yHbtNGuGhvh4sZzY1RHNsl0aQE80yCPWUGrtjhsSV5NbNrzCJKoDiO795MZ1z55ZUvvz2woSy_z1r_a0QBWmXMsk0YfaaIKo4PZNe3oHgdKEqcn0qUONTgs35vZmj9woZUq4ZAFrsVkj7DZVvUFai8QwR-urRpgj-05JIUtlPrP_NBF1Mo5nXhafkEVPLtQdBkSeLi-kw1MF7q9CSiUPK4ErDymtDjGcJmXOCK4ueCgXKMlVaJL82yj5uIsfvaUOXFQ-pp20R-U2P3sKNUzMW0FJ6kSbsM73MfwcOi5Gx5mn-SZssjsprlpoe8gmBMnBzEtLMin1ArNkscKmS9dCB5cPOqGcY-lFyMfi_uyrZdguhJj_DcZ-iWZQXsg6s3UOaX0Ff-2ptN1okoOqea__nbaO1QYvoP-QLIevJJBo6GNGuc3hOOBLEZZu6_C7hrvQsqfqbmV7xRnY7ciZmpCZragiPzXMhJYAcbzHxSzxlLZtkmwlQ8bHpV6gw2efs_5s1vivV0S1B_fme4DWhnJAZ3w_vXXF0_9FTosHUlVY8tQekOYEPKJjUyLW4G-qrPNR5feFg2mTjKdSzHwLOYsaCnStwln6V8KIBi_c1NgRVBNmTljhaCo8BBf9ICgQtvyhjQpFKDbulA_6rswKXbBinDCmr2JalcQq0G2Hr-i6_Mykw9iKX8UVWpmcuGiHUA-qOSxLfKdOzh0xKoGGfzOVV2MF9NmPCl1gV4VMf7jRklN9_4v2gQpU5w5v14QrUp18A01WeCLkNqcXL0tAHgBoxfKwbrPeqNE3-u5ZJEVZkDvUhsFIiZd-aTzvmrgEvk48c4BJOhpwjhusNrL4Bptt6LINMumFF8hc_RFC8URz06HZsf9YfBLTWx9XSlKFmUSzdy2TvIAIIN8wENV-dmDiq_-7vI7eWjYD0KtN-2NL8jWpiwxK58_kondwpDYSZnpipbL4KZmhkay20AHAdkWNxizBmHjTjIRz7QKRLimE11_mi8k4QaYrYKi1nhwASi1Vd5qQ4sbG68Cb5m1HiaYs0pqe6LJWcuQFFgHqDsmLZl-qFMRTZleKWQRgtwX1Gs3L-rcwMoJV5KBNoHUzLA9H1kO0bubevbvZTBE-DrJEmIGjRK0gAQWPjeKXoOH1BBiHs9B3ICD-XZzBljDDntHICUKhfc1sxc-Tiqh6CcmTvo-RhKV_G9GeWzYtiXcD0VysyAUiUXVA_B3yUDVU0zivl38f0PGIndMl6Obw58SfkAT8eZ_7Cz8k_N1xHbfhjkmvBJjWMWmpIGV7Uas4V8Jj70TCHdXBBHwpy-bJIJsi3pv3i9LXvsKizxFldbLkGx5uQRuzbkoW2XTkS1UTIURNwZhJ509pq15CK6KEsl7COYKi97LUShVsu5QNOrZYm4q_15NdyBBE2zTtNHXJmaknSCCrbPVTL7nrgy5j4i2_F7Z6MtE2u8cUakMuGdXAZu0JlJDZ0BWFKXsRaVDPg0ns4vTEvEHmQmS9uG4XAfcxll2fBsmljWzMkI7fnQCnoCW6tQSduleF6RrNJqctwQa9uEyIhdcL1wmU2PyQXFki84SJ8U3wBXaUZgpTC1plYYLhshTxNxj3YQO2A8nDWVkr4fiudv9MQ5Q2MQAzLTdryHUT7dmDnotWlSGj5ttbPLFuknoLonGQFcrEel9KtrLuTxcLZOFoYMpC0lNqR58sCBkYuumx95eN8V8b0K_BTech0TSCHBnsE2rYf562rEhe7nXEbRsABgkjjVHoC4HzdjE78JFy_BUXe91aAqJOHmm0NnPuTpzJm8yigYGOUOSzROoUP7LQufRZ-VzSnlOdy9QIz8qHJdSv7xquL04MNOi8HQxnxM4EMLkG9eM8jOzXXhse5tf-mEFqga0IM8SehbRYmddDNxGc6NlPRdixZ6uBfVBs_NkleCZs6Frw8YpElbnvC0bza3oEVq9WpUv2oE_X3py43ZJ3Iu_Yc6NuJVRGyJGjNs9ZN-qPVumUC5x9CR8p7lJrtOCReFOlHEHxtUXHHs-Bx2mZcjzqtX_WYdR24jmAo04gkb8pFqJdMXT_MzfGpcCxkLPV1ZQXk4Edtih-bqFqkR5inqw'></script></head>
+<body>
+  <div class=\"page-shell\">
+    <header class=\"header\">
+      <div class=\"header-inner\">
+        <a href=\"#home\" class=\"logo-mark\" aria-label=\"Skanda Rajesh Photography\">
+          <svg viewBox=\"0 0 40 40\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\">
+            <circle cx=\"20\" cy=\"20\" r=\"12\" stroke-linecap=\"round\" />
+            <path d=\"M12 26c2-3 4-4 8-4s6 1 8 4\" stroke-linecap=\"round\" />
+            <circle cx=\"16\" cy=\"18\" r=\"1.6\" />
+            <circle cx=\"24\" cy=\"18\" r=\"1.6\" />
+            <path d=\"M18 30c0-1 1-2 2-2s2 1 2 2\" stroke-linecap=\"round\" />
+          </svg>
+          <span class=\"logo-text\">
+            <span class=\"logo-title\">Skanda Rajesh</span>
+            <span class=\"logo-subtitle\">Architecture · Motorsport · Astro · Fashion</span>
+          </span>
+        </a>
+        <nav class=\"nav\" aria-label=\"Primary\">
+          <ul class=\"nav-list\">
+            <li><a href=\"#home\" class=\"nav-link active\" data-nav>Home</a></li>
+            <li><a href=\"#gallery\" class=\"nav-link\" data-nav>Gallery</a></li>
+            <li><a href=\"#series\" class=\"nav-link\" data-nav>Series</a></li>
+            <li><a href=\"#about\" class=\"nav-link\" data-nav>About</a></li>
+            <li><a href=\"#contact\" class=\"nav-link\" data-nav>Contact</a></li>
+          </ul>
+          <button class=\"theme-toggle\" type=\"button\" aria-label=\"Toggle theme\" data-theme-toggle>
+            <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class=\"main\" id=\"home\">
+      <section class=\"section hero\" aria-labelledby=\"hero-title\">
+        <div class=\"section-inner hero-grid reveal\">
+          <div>
+            <h1 id=\"hero-title\" class=\"hero-title\">Photons in Motion</h1>
+            <p style=\"margin-top: var(--space-4);\">
+              An experimental portfolio crossing architecture, motorsport, astro and fashion — built to feel like a simulation and a gallery at once.
+            </p>
+            <div class=\"hero-meta\">
+              <span class=\"hero-tag\">Rome · Travel · Experiments</span>
+              <span class=\"hero-tag\">Mechanical + Fashion + Photo</span>
+            </div>
+            <div class=\"hero-actions\">
+              <a href=\"#gallery\" class=\"btn btn-primary\"><span>View curated set</span></a>
+              <a href=\"#series\" class=\"btn btn-secondary\"><span>Explore series</span></a>
+            </div>
+          </div>
+          <div class=\"hero-orbit\">
+            <div class=\"hero-orbit-inner\">
+              <div class=\"hero-frame\">
+                <span>Place your JPEGs into an <code>assets</code> folder in this repo — this shell already routes them into gallery and series views.</span>
+              </div>
+              <div class=\"hero-orbit-ring\"></div>
+              <div class=\"hero-orbit-node\"></div>
+              <div class=\"hero-orbit-node\"></div>
+              <div class=\"hero-orbit-node\"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class=\"section\" id=\"gallery\" aria-labelledby=\"gallery-title\">
+        <div class=\"section-inner reveal\">
+          <div class=\"section-heading\">
+            <div>
+              <h2 id=\"gallery-title\" class=\"section-title\">Gallery</h2>
+              <p class=\"section-subtitle\">Single-image cards sorted by your main themes. Filters let people explore architecture, motorsport, astro, and fashion separately.</p>
+            </div>
+          </div>
+          <div class=\"pill-row\" aria-label=\"Filter gallery by category\">
+            <button class=\"pill\" type=\"button\" data-filter=\"all\" data-active=\"true\">All</button>
+            <button class=\"pill\" type=\"button\" data-filter=\"architecture\">Architecture</button>
+            <button class=\"pill\" type=\"button\" data-filter=\"motorsport\">Motorsport</button>
+            <button class=\"pill\" type=\"button\" data-filter=\"astro\">Astro</button>
+            <button class=\"pill\" type=\"button\" data-filter=\"fashion\">Fashion</button>
+          </div>
+          <div class=\"gallery-grid\" id=\"gallery-grid\">
+            <!-- Architecture -->
+            <article class=\"photo-card\" data-category=\"architecture\">
+              <div class=\"photo-media\">
+                <img src=\"assets/7173345.jpg\" alt=\"Coastal town facades and boats, architecture photography by Skanda Rajesh\" loading=\"lazy\" width=\"1600\" height=\"1000\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Harbour facades</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Architecture</span><span class=\"photo-year\">2023</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"architecture\">
+              <div class=\"photo-media\">
+                <img src=\"assets/Post1_2.jpg\" alt=\"Historic fountain and facade, architecture in Rome by Skanda Rajesh\" loading=\"lazy\" width=\"1600\" height=\"900\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Monument study</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Architecture</span><span class=\"photo-year\">2023</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"architecture\">
+              <div class=\"photo-media\">
+                <img src=\"assets/3250167.jpg\" alt=\"Geometric building corner in monochrome, architecture by Skanda Rajesh\" loading=\"lazy\" width=\"1200\" height=\"1600\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Concrete geometry</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Architecture</span><span class=\"photo-year\">2022</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"architecture\">
+              <div class=\"photo-media\">
+                <img src=\"assets/C040067.jpg\" alt=\"Street with modern buildings and traffic, architectural environment by Skanda Rajesh\" loading=\"lazy\" width=\"1200\" height=\"1600\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">City route</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Architecture</span><span class=\"photo-year\">2022</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"architecture\">
+              <div class=\"photo-media\">
+                <img src=\"assets/C040079.jpg\" alt=\"Urban road and buildings in monochrome, architecture scene by Skanda Rajesh\" loading=\"lazy\" width=\"1200\" height=\"1600\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Monochrome street</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Architecture</span><span class=\"photo-year\">2022</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"architecture\">
+              <div class=\"photo-media\">
+                <img src=\"assets/4030217.jpg\" alt=\"Beach front with wall and umbrellas, coastal built environment by Skanda Rajesh\" loading=\"lazy\" width=\"1200\" height=\"1600\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Seaside terrace</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Architecture</span><span class=\"photo-year\">2023</span></div>
+              </div>
+            </article>
+
+            <!-- Motorsport -->
+            <article class=\"photo-card\" data-category=\"motorsport\">
+              <div class=\"photo-media\">
+                <img src=\"assets/9151465.jpg\" alt=\"Blue GT race car in motion on track, motorsport photography by Skanda Rajesh\" loading=\"lazy\" width=\"1600\" height=\"1000\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">GT blur</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Motorsport</span><span class=\"photo-year\">2023</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"motorsport\">
+              <div class=\"photo-media\">
+                <img src=\"assets/9151730.jpg\" alt=\"BMW race car at speed on circuit, motorsport photography by Skanda Rajesh\" loading=\"lazy\" width=\"1600\" height=\"1000\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Apex line</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Motorsport</span><span class=\"photo-year\">2023</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"motorsport\">
+              <div class=\"photo-media\">
+                <img src=\"assets/C050078.jpg\" alt=\"Race car in warm light on track, motorsport photograph by Skanda Rajesh\" loading=\"lazy\" width=\"1600\" height=\"1000\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Golden stint</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Motorsport</span><span class=\"photo-year\">2022</span></div>
+              </div>
+            </article>
+
+            <!-- Astro -->
+            <article class=\"photo-card\" data-category=\"astro\">
+              <div class=\"photo-media\">
+                <img src=\"assets/3250200.jpg\" alt=\"Star trails over dark sky, astro long exposure by Skanda Rajesh\" loading=\"lazy\" width=\"1600\" height=\"1000\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Orbit traces</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Astro</span><span class=\"photo-year\">2022</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"astro\">
+              <div class=\"photo-media\">
+                <img src=\"assets/3010047.jpg\" alt=\"Teal-toned star trails with silhouetted trees, astro photography by Skanda Rajesh\" loading=\"lazy\" width=\"2000\" height=\"1200\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Teal rotations</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Astro</span><span class=\"photo-year\">2022</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"astro\">
+              <div class=\"photo-media\">
+                <img src=\"assets/StarStaX__2120001-_2120458_lighten_00000456.jpg\" alt=\"Composite star trail arc, astro long exposure experiment by Skanda Rajesh\" loading=\"lazy\" width=\"2000\" height=\"1200\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Star choreography</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Astro</span><span class=\"photo-year\">2022</span></div>
+              </div>
+            </article>
+
+            <!-- Fashion / people / performance -->
+            <article class=\"photo-card\" data-category=\"fashion\">
+              <div class=\"photo-media\">
+                <img src=\"assets/PA280160.jpg\" alt=\"Stage performance with dramatic costume and red light, fashion-adjacent photography by Skanda Rajesh\" loading=\"lazy\" width=\"1600\" height=\"1000\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Stage ritual</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Fashion / Performance</span><span class=\"photo-year\">2022</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"fashion\">
+              <div class=\"photo-media\">
+                <img src=\"assets/A250870-2.jpg\" alt=\"Runway-style figure in motion, fashion show photograph by Skanda Rajesh\" loading=\"lazy\" width=\"1600\" height=\"1000\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Smoke and silk</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Fashion / Performance</span><span class=\"photo-year\">2022</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"fashion\">
+              <div class=\"photo-media\">
+                <img src=\"assets/A250789.jpg\" alt=\"Portrait at an event, editorial-style fashion photograph by Skanda Rajesh\" loading=\"lazy\" width=\"1200\" height=\"1600\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Evening portrait</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Fashion / Portrait</span><span class=\"photo-year\">2022</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"fashion\">
+              <div class=\"photo-media\">
+                <img src=\"assets/4060538.jpg\" alt=\"Black-and-white portrait at a gathering, fashion-inspired photography by Skanda Rajesh\" loading=\"lazy\" width=\"1200\" height=\"1600\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Conversation</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Fashion / Portrait</span><span class=\"photo-year\">2023</span></div>
+              </div>
+            </article>
+
+            <article class=\"photo-card\" data-category=\"fashion\">
+              <div class=\"photo-media\">
+                <img src=\"assets/4060929.jpg\" alt=\"Black-and-white party scene, candid fashion photograph by Skanda Rajesh\" loading=\"lazy\" width=\"1200\" height=\"1600\" />
+              </div>
+              <div class=\"photo-meta\">
+                <div class=\"photo-title\">Candid glance</div>
+                <div class=\"photo-info-row\"><span class=\"photo-tag\">Fashion / Portrait</span><span class=\"photo-year\">2023</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class=\"section\" id=\"series\" aria-labelledby=\"series-title\">
+        <div class=\"section-inner reveal\">
+          <div class=\"section-heading\">
+            <div>
+              <h2 id=\"series-title\" class=\"section-title\">Series & Projects</h2>
+              <p class=\"section-subtitle\">Bands for cohesive sets — race weekends, astro sessions, city walks, fashion shows. Each card can link to a deeper page later.</p>
+            </div>
+          </div>
+          <div class=\"series-row\" aria-label=\"Project series carousel\">
+            <article class=\"series-card\">
+              <div class=\"series-media\">
+                <img src=\"assets/9151465.jpg\" alt=\"Cover image for motorsport series: GT car at speed\" loading=\"lazy\" width=\"1600\" height=\"900\" />
+              </div>
+              <div class=\"series-body\">
+                <div class=\"series-title\">Trackside velocity</div>
+                <p>Motorsport sessions focusing on panning, blur and race-weekend atmosphere around Italian circuits.</p>
+                <div class=\"series-meta\"><span class=\"series-chip\">Motorsport</span><span>10–18 images</span></div>
+              </div>
+            </article>
+
+            <article class=\"series-card\">
+              <div class=\"series-media\">
+                <img src=\"assets/StarStaX__2120001-_2120458_lighten_00000456.jpg\" alt=\"Cover image for astro series: star trail composite\" loading=\"lazy\" width=\"1600\" height=\"900\" />
+              </div>
+              <div class=\"series-body\">
+                <div class=\"series-title\">Star choreography</div>
+                <p>Long-exposure experiments turning the night sky into arcs, spirals and simulated motion around hidden axes.</p>
+                <div class=\"series-meta\"><span class=\"series-chip\">Astro</span><span>6–12 images</span></div>
+              </div>
+            </article>
+
+            <article class=\"series-card\">
+              <div class=\"series-media\">
+                <img src=\"assets/Post1_2.jpg\" alt=\"Cover image for architecture series: historic fountain facade\" loading=\"lazy\" width=\"1600\" height=\"900\" />
+              </div>
+              <div class=\"series-body\">
+                <div class=\"series-title\">City frames</div>
+                <p>Architecture and cityscapes from Rome, Florence and coastal towns — focusing on structure, rhythm and light.</p>
+                <div class=\"series-meta\"><span class=\"series-chip\">Architecture</span><span>12–20 images</span></div>
+              </div>
+            </article>
+
+            <article class=\"series-card\">
+              <div class=\"series-media\">
+                <img src=\"assets/A250870-2.jpg\" alt=\"Cover image for fashion series: dancer on stage in monochrome light\" loading=\"lazy\" width=\"1600\" height=\"900\" />
+              </div>
+              <div class=\"series-body\">
+                <div class=\"series-title\">Performance fashion</div>
+                <p>Stage and runway work where costume, movement and lighting overlap with your sportswear and fashion interests.</p>
+                <div class=\"series-meta\"><span class=\"series-chip\">Fashion / Performance</span><span>8–14 images</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class=\"section\" id=\"about\" aria-labelledby=\"about-title\">
+        <div class=\"section-inner reveal\">
+          <div class=\"section-heading\">
+            <div>
+              <h2 id=\"about-title\" class=\"section-title\">About</h2>
+              <p class=\"section-subtitle\">A short text block to frame how your engineering work, fashion practice and photography influence each other.</p>
+            </div>
+          </div>
+          <div class=\"about-grid\">
+            <div class=\"about-body\">
+              <p>
+                Skanda is a multidisciplinary designer and engineering student based in Italy, working across motorsport simulation, sportswear design and image-making.
+              </p>
+              <p>
+                This portfolio is a lightweight GitHub-hosted site designed around four themes: architecture, motorsport, astro and fashion. It is intentionally minimal so the images carry most of the voice.
+              </p>
+              <p>
+                As your projects evolve, you can branch this repo and grow each theme into deeper series — race analysis notes, garment specs, or written stories alongside the images.
+              </p>
+            </div>
+            <aside class=\"about-highlight\">
+              <div class=\"about-highlight-title\">Focus areas</div>
+              <ul class=\"about-list\">
+                <li>Architecture — structural rhythm, facades, and city atmospheres.</li>
+                <li>Motorsport — track-side photography aligned with your vehicle dynamics work.</li>
+                <li>Astro — long-exposure experiments treating the sky like simulation data.</li>
+                <li>Fashion — performance, sportswear and editorial moments in motion.</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class=\"section\" id=\"contact\" aria-labelledby=\"contact-title\">
+        <div class=\"section-inner reveal\">
+          <div class=\"section-heading\">
+            <div>
+              <h2 id=\"contact-title\" class=\"section-title\">Contact</h2>
+              <p class=\"section-subtitle\">One or two ways to reach you for collaborations, race weekends or fashion projects.</p>
+            </div>
+          </div>
+          <div class=\"contact-panel\">
+            <p>
+              For motorsport events, fashion projects, or collaborative visual studies, feel free to reach out. The portfolio lives on GitHub so it can grow alongside your engineering work.
+            </p>
+            <div class=\"contact-row\">
+              <a class=\"contact-link\" href=\"mailto:your-email@example.com\" target=\"_blank\" rel=\"noopener noreferrer\"><span>your-email@example.com</span></a>
+              <a class=\"contact-link\" href=\"https://github.com/your-username\" target=\"_blank\" rel=\"noopener noreferrer\"><span>GitHub</span></a>
+              <a class=\"contact-link\" href=\"https://www.instagram.com/your-handle\" target=\"_blank\" rel=\"noopener noreferrer\"><span>Instagram</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class=\"footer\">
+      <div class=\"footer-inner\">
+        <span>© <span id=\"year\"></span> Skanda Rajesh. All rights reserved.</span>
+        <div class=\"footer-meta\">
+          <span>Built as a GitHub Pages shell.</span>
+          <span>Architecture · Motorsport · Astro · Fashion.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      const toggle = document.querySelector('[data-theme-toggle]');
+      const root = document.documentElement;
+      let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', theme);
+      function renderIcon() {
+        if (!toggle) return;
+        toggle.innerHTML = theme === 'dark'
+          ? '<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><path d=\"M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42\"/></svg>'
+          : '<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>';
+        toggle.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+      }
+      renderIcon();
+      toggle && toggle.addEventListener('click', function(){
+        theme = theme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+        renderIcon();
+      });
+    })();
+
+    (function(){
+      const links = document.querySelectorAll('[data-nav]');
+      function updateActive(hash) {
+        links.forEach(link => {
+          if (link.getAttribute('href') === hash) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+      updateActive(window.location.hash || '#home');
+      window.addEventListener('hashchange', () => {
+        updateActive(window.location.hash || '#home');
+      });
+    })();
+
+    (function(){
+      const pills = document.querySelectorAll('.pill[data-filter]');
+      const cards = document.querySelectorAll('.photo-card');
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          const filter = pill.getAttribute('data-filter');
+          pills.forEach(p => p.setAttribute('data-active', String(p === pill)));
+          cards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            const show = filter === 'all' || filter === category;
+            card.setAttribute('data-hidden', show ? 'false' : 'true');
+          });
+        });
+      });
+    })();
+
+    (function(){
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        reveals.forEach(el => observer.observe(el));
+      } else {
+        reveals.forEach(el => el.classList.add('in-view'));
+      }
+    })();
+
+    (function(){
+      const yearEl = document.getElementById('year');
+      if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+    })();
+  </script>
+</body>
+</html>
